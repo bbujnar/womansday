@@ -274,7 +274,21 @@ button:hover {
       </div>
     </div>
     
+    <audio id="background-audio" loop>
+      <source src="./song.mp3" type="audio/mp3">
+      Twoja przeglądarka nie obsługuje elementu audio.
+    </audio>
+    
     <script>
+
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          var audio = document.getElementById('background-audio');
+          audio.play().catch(function(error) {
+            console.log('Automatyczne odtwarzanie zostało zablokowane:', error);
+          });
+        }, 200); // 1000 ms = 1 sekunda
+      });
       function checkAnswers() {
         let score = 0;
         const answers = {
@@ -310,11 +324,5 @@ button:hover {
         resultDiv.style.display = "block";
       }
     </script>
-    <iframe class="hidden-video" 
-        src="https://www.youtube.com/embed/BYkaRJbSHRI?autoplay=1&loop=1&playlist=BYkaRJbSHRI" 
-        frameborder="0" 
-        allow="autoplay; encrypted-media" 
-        allowfullscreen>
-    </iframe>
   </body>
 </html>
